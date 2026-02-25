@@ -1,0 +1,17 @@
+# Arquivos de credenciais sensíveis
+firebase_config.json
+firebase_service_account.json
+*.json
+
+# Logs locais
+local_access_log.json
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos temporários
+*.tmp
+*.log

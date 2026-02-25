@@ -1,0 +1,33 @@
+CONFIGURAÇÃO DE EMAIL REAL
+========================
+
+Para que os emails sejam enviados de verdade (não apenas simulados):
+
+1. INSTALAR DEPENDÊNCIA:
+   pip install python-dotenv
+
+2. CRIAR ARQUIVO .env:
+   Crie um arquivo chamado ".env" na pasta do projeto
+
+3. CONFIGURAR CREDENCIAIS:
+   Adicione no arquivo .env:
+   GMAIL_USER=seu_email@gmail.com
+   GMAIL_PASSWORD=sua_senha_app
+
+4. GERAR SENHA DE APP NO GMAIL:
+   - Acesse: https://myaccount.google.com/security
+   - Ative "Verificação em duas etapas"
+   - Gere uma "Senha de app" para este sistema
+   - Use essa senha no arquivo .env
+
+5. EXEMPLO DE ARQUIVO .env:
+   GMAIL_USER=alexandre.tolentino@gmail.com
+   GMAIL_PASSWORD=abcd efgh ijkl mnop
+
+6. REINICIAR O SISTEMA:
+   Após configurar, reinicie o Streamlit
+
+IMPORTANTE:
+- Use senha de app, NÃO sua senha normal do Gmail
+- Mantenha o arquivo .env seguro e não compartilhe
+- O sistema detectará automaticamente se está configurado

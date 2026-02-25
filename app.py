@@ -11,6 +11,25 @@ import re
 from datetime import datetime
 import os
 
+
+# -----------------------------
+# Utilitários de normalização
+# -----------------------------
+def normalizar_colunas_numericas(df: pd.DataFrame, colunas):
+    """Converte colunas numéricas que podem vir como texto (ex: '7,5', '--') para float.
+    Valores inválidos viram NaN. Retorna o próprio DataFrame para encadeamento.
+    """
+    for c in colunas:
+        if c in df.columns:
+            serie = df[c]
+            # Evitar erros com None/NaN e com valores não-string
+            serie = serie.astype(str).str.strip()
+            # Trocar vírgula por ponto (decimal pt-BR)
+            serie = serie.str.replace(",", ".", regex=False)
+            # Converter para número
+            df[c] = pd.to_numeric(serie, errors="coerce")
+    return df
+
 # Carregar variáveis de ambiente
 try:
     from dotenv import load_dotenv
@@ -343,7 +362,7 @@ def tela_instrucoes():
     
     # Assinatura
     st.markdown("---")
-    st.markdown("<div style='text-align: center; padding: 2rem;'><strong style='color: #4a90e2; font-size: 1.1rem;'>© 2025 – desenvolvido por Alexandre Tolentinoo</strong></div>", unsafe_allow_html=True)
+    st.markdown("<div style='text-align: center; padding: 2rem;'><strong style='color: #4a90e2; font-size: 1.1rem;'>© 2025 – desenvolvido por Wallys Pereirao</strong></div>", unsafe_allow_html=True)
 
 def tela_login():
     """Exibe tela de login"""
@@ -412,7 +431,7 @@ def tela_login():
         
         # Assinatura centralizada
         st.markdown("---")
-        st.markdown("<div style='text-align: center;'><strong>© 2025 – desenvolvido por Alexandre Tolentino</strong></div>", unsafe_allow_html=True)
+        st.markdown("<div style='text-align: center;'><strong>© 2025 – desenvolvido por Wallys Pereira</strong></div>", unsafe_allow_html=True)
 
 def tela_sobre():
     """Exibe modal com informações sobre o sistema"""
@@ -437,7 +456,7 @@ def tela_sobre():
     """, unsafe_allow_html=True)
     
     st.markdown("""
-    <div class="sobre-titulo">Desenvolvedor: Alexandre Tolentino</div>
+    <div class="sobre-titulo">Desenvolvedor: Wallys Pereira</div>
     <div class="sobre-titulo">Cargo: Técnico de Currículo da Superintendência Regional de Educação de Gurupi - TO</div>
     """, unsafe_allow_html=True)
     
@@ -1243,7 +1262,7 @@ def criar_interface_conteudo_aplicado(df):
     # Header específico para conteúdo aplicado
     st.markdown("""
     <div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #059669, #10b981); border-radius: 15px; margin-bottom: 30px; box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3);">
-        <h1 style="color: white; margin: 0; font-size: 2.2em; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Superintendência Regional de Educação de Gurupi TO</h1>
+        <h1 style="color: white; margin: 0; font-size: 2.2em; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Superintendência Regional de Educação de Porto Nacional TO</h1>
         <h2 style="color: white; margin: 15px 0 0 0; font-weight: 600; font-size: 1.8em; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">Painel SGE - Conteúdo Aplicado</h2>
         <h3 style="color: rgba(255,255,255,0.95); margin: 10px 0 0 0; font-weight: 500; font-size: 1.4em;">Análise de Atividades e Conteúdos Registrados</h3>
         <p style="color: rgba(255,255,255,0.8); margin: 10px 0 0 0; font-size: 1.1em; font-weight: 400;">Registros de Conteúdo Aplicado</p>
@@ -1321,19 +1340,20 @@ def criar_interface_conteudo_aplicado(df):
             return "Sem Data"
         
         # Definir períodos dos bimestres (ano 2025)
-        bimestre1_inicio = pd.to_datetime("2025-02-03")
-        bimestre1_fim = pd.to_datetime("2025-04-03")
-        
-        bimestre2_inicio = pd.to_datetime("2025-04-04")
-        bimestre2_fim = pd.to_datetime("2025-06-27")
-        
-        bimestre3_inicio = pd.to_datetime("2025-08-04")
-        bimestre3_fim = pd.to_datetime("2025-10-11")
-        
-        bimestre4_inicio = pd.to_datetime("2025-10-12")
-        bimestre4_fim = pd.to_datetime("2025-12-19")
-        
-        # Classificar por bimestre
+        ano = data.year
+        bimestre1_inicio = pd.to_datetime(f"{ano}-02-03")
+        bimestre1_fim = pd.to_datetime(f"{ano}-04-03")
+
+        bimestre2_inicio = pd.to_datetime(f"{ano}-04-04")
+        bimestre2_fim = pd.to_datetime(f"{ano}-06-27")
+
+        bimestre3_inicio = pd.to_datetime(f"{ano}-08-04")
+        bimestre3_fim = pd.to_datetime(f"{ano}-10-11")
+
+        bimestre4_inicio = pd.to_datetime(f"{ano}-10-12")
+        bimestre4_fim = pd.to_datetime(f"{ano}-12-19")
+
+# Classificar por bimestre
         if bimestre1_inicio <= data <= bimestre1_fim:
             return "1º Bimestre"
         elif bimestre2_inicio <= data <= bimestre2_fim:
@@ -1940,9 +1960,11 @@ def calcula_indicadores_b1(df):
 # -----------------------------
 # Inicializar variáveis de sessão
 if 'logado' not in st.session_state:
-    st.session_state.logado = False
-if 'usuario' not in st.session_state:
-    st.session_state.usuario = None
+    # Login desativado: acesso liberado
+    st.session_state.logado = True
+if 'usuario' not in st.session_state or not st.session_state.get('usuario'):
+    # Login desativado: usuário padrão
+    st.session_state.usuario = {'nome': 'Visitante', 'perfil': 'publico'}
 if 'mostrar_alterar_senha' not in st.session_state:
     st.session_state.mostrar_alterar_senha = False
 if 'mostrar_instrucoes' not in st.session_state:
@@ -1963,11 +1985,7 @@ if st.session_state.mostrar_instrucoes:
     tela_instrucoes()
     st.stop()
 
-# Verificar se usuário está logado
-if not st.session_state.logado:
-    tela_login()
-    st.stop()
-
+# Login desativado: não bloquear acesso
 # Verificar se deve mostrar tela de alterar senha
 if st.session_state.mostrar_alterar_senha:
     tela_alterar_senha()
@@ -2945,6 +2963,9 @@ tabela_alerta = (indic[indic["Alerta"] & (indic["Classificacao"] != "Incompleto"
 # Filtrar apenas colunas que existem no dataframe
 cols_visiveis = [c for c in cols_visiveis if c in tabela_alerta.columns]
 
+# Normalizar tipos numéricos antes de formatar
+tabela_alerta = normalizar_colunas_numericas(tabela_alerta, cols_formatar)
+
 for c in cols_formatar:
     if c in tabela_alerta.columns:
         # Formatar para 1 casa decimal, removendo .0 desnecessário
@@ -3078,6 +3099,7 @@ if len(incompletos) > 0:
         incompletos_ordenados = incompletos.sort_values(["Turma", coluna_aluno, "Disciplina"])
         
         # Formatar colunas numéricas
+        incompletos_ordenados = normalizar_colunas_numericas(incompletos_ordenados, ["N1", "N2", "Media12", "ReqMediaProx2"])
         for c in ["N1", "N2", "Media12", "ReqMediaProx2"]:
             if c in incompletos_ordenados.columns:
                 incompletos_ordenados[c] = incompletos_ordenados[c].round(1)
@@ -3138,8 +3160,9 @@ if len(incompletos) > 0:
             incompletos_b1_ordenados = incompletos_b1.sort_values(["Turma", coluna_aluno, "Disciplina"])
             
             # Formatar colunas numéricas
-            for c in ["N1", "N2", "Media12", "ReqMediaProx2"]:
-                if c in incompletos_b1_ordenados.columns:
+            incompletos_b1_ordenados = normalizar_colunas_numericas(incompletos_b1_ordenados, ["N1", "N2", "Media12", "ReqMediaProx2"])
+        for c in ["N1", "N2", "Media12", "ReqMediaProx2"]:
+            if c in incompletos_b1_ordenados.columns:
                     incompletos_b1_ordenados[c] = incompletos_b1_ordenados[c].round(1)
                     incompletos_b1_ordenados[c] = incompletos_b1_ordenados[c].apply(lambda x: f"{x:.1f}".rstrip('0').rstrip('.') if pd.notna(x) else x)
             
@@ -3202,12 +3225,12 @@ if len(incompletos) > 0:
                 incompletos_b2_ordenados = incompletos_b2.sort_values(["Turma", coluna_aluno, "Disciplina"])
                 
             # Formatar colunas numéricas (sempre usa N1, N2, Media12, ReqMediaProx2 para 2º bimestre)
+            incompletos_b2_ordenados = normalizar_colunas_numericas(incompletos_b2_ordenados, ["N1", "N2", "Media12", "ReqMediaProx2"])
             for c in ["N1", "N2", "Media12", "ReqMediaProx2"]:
                 if c in incompletos_b2_ordenados.columns:
-                        incompletos_b2_ordenados[c] = incompletos_b2_ordenados[c].round(1)
-                        incompletos_b2_ordenados[c] = incompletos_b2_ordenados[c].apply(lambda x: f"{x:.1f}".rstrip('0').rstrip('.') if pd.notna(x) else x)
-                
-                # Mostrar tabela do 2º bimestre
+                    incompletos_b2_ordenados[c] = incompletos_b2_ordenados[c].round(1)
+                    incompletos_b2_ordenados[c] = incompletos_b2_ordenados[c].apply(lambda x: f"{x:.1f}".rstrip('0').rstrip('.') if pd.notna(x) else x)
+# Mostrar tabela do 2º bimestre
                 cols_incompletos_b2 = [coluna_aluno, "Turma", "Disciplina", "N1", "N2", "Media12", "Classificacao"]
                 styled_incompletos_b2 = incompletos_b2_ordenados[cols_incompletos_b2].style.applymap(color_classification, subset=["Classificacao"])
                 st.dataframe(styled_incompletos_b2, use_container_width=True)
@@ -3330,6 +3353,9 @@ if tipo_analise == "Apenas 1º Bimestre":
 else:
     cols_formatar_diag = ["N1", "N2", "Media12", "ReqMediaProx2"]
     cols_diag = [coluna_aluno, "Turma", "Disciplina", "N1", "N2", "Media12", "Classificacao", "ReqMediaProx2"]
+
+# Normalizar tipos numéricos antes de formatar
+tab_diag = normalizar_colunas_numericas(tab_diag, cols_formatar_diag)
 
 for c in cols_formatar_diag:
     if c in tab_diag.columns:

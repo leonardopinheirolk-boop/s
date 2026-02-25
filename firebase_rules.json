@@ -1,0 +1,9 @@
+{
+  "rules": {
+    "access_logs": {
+      ".read": true,
+      ".write": true,
+      ".indexOn": ["timestamp", "usuario"]
+    }
+  }
+}
