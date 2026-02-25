@@ -22,156 +22,268 @@
   },
   {
     "usuario": "ALEXANDRE PEREIRA TOLENTINO",
-    "ip": "127.0.0.1",
+    "ip": "128.201.17.232",
     "user_agent": "Streamlit App",
-    "timestamp": "2025-10-02T06:51:26.451137-03:00",
-    "data_hora": "02/10/2025 06:51:26"
-  },
-  {
-    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
-    "ip": "186.192.248.236",
-    "user_agent": "Streamlit App",
-    "timestamp": "2025-10-02T06:53:20.142206-03:00",
-    "data_hora": "02/10/2025 06:53:20"
-  },
-  {
-    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
-    "ip": "186.192.248.236",
-    "user_agent": "Streamlit App",
-    "timestamp": "2025-10-02T06:55:00.757319-03:00",
-    "data_hora": "02/10/2025 06:55:00"
-  },
-  {
-    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
-    "ip": "186.192.248.236",
-    "user_agent": "Streamlit App",
-    "timestamp": "2025-10-02T06:55:01.810436-03:00",
-    "data_hora": "02/10/2025 06:55:01"
-  },
-  {
-    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
-    "ip": "186.192.248.236",
-    "user_agent": "Streamlit App",
-    "timestamp": "2025-10-02T06:56:35.338482-03:00",
-    "data_hora": "02/10/2025 06:56:35"
-  },
-  {
-    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
-    "ip": "186.192.248.236",
-    "user_agent": "Streamlit App",
-    "timestamp": "2025-10-02T06:57:49.869393-03:00",
-    "data_hora": "02/10/2025 06:57:49"
+    "timestamp": "2025-09-30T08:53:28.592758-03:00",
+    "data_hora": "30/09/2025 08:53:28"
   },
   {
     "usuario": "ALEXANDRE PEREIRA TOLENTINO",
     "ip": "127.0.0.1",
     "user_agent": "Streamlit App",
-    "timestamp": "2025-10-06T10:31:57.596624-03:00",
-    "data_hora": "06/10/2025 10:31:57"
+    "timestamp": "2025-09-30T09:49:56.619482-03:00",
+    "data_hora": "30/09/2025 09:49:56"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "128.201.17.232",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-09-30T10:04:47.540475-03:00",
+    "data_hora": "30/09/2025 10:04:47"
   },
   {
     "usuario": "ALEXANDRE PEREIRA TOLENTINO",
     "ip": "127.0.0.1",
     "user_agent": "Streamlit App",
-    "timestamp": "2025-10-06T10:58:38.038598-03:00",
-    "data_hora": "06/10/2025 10:58:38"
+    "timestamp": "2025-09-30T10:13:45.071573-03:00",
+    "data_hora": "30/09/2025 10:13:45"
   },
   {
     "usuario": "ALEXANDRE PEREIRA TOLENTINO",
     "ip": "127.0.0.1",
     "user_agent": "Streamlit App",
-    "timestamp": "2025-10-06T10:59:26.080123-03:00",
-    "data_hora": "06/10/2025 10:59:26"
+    "timestamp": "2025-09-30T13:34:39.460917-03:00",
+    "data_hora": "30/09/2025 13:34:39"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.237",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-09-30T18:28:19.028054-03:00",
+    "data_hora": "30/09/2025 18:28:19"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.237",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-09-30T18:34:47.552806-03:00",
+    "data_hora": "30/09/2025 18:34:47"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.237",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-09-30T18:39:54.615969-03:00",
+    "data_hora": "30/09/2025 18:39:54"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.237",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-09-30T18:42:22.089828-03:00",
+    "data_hora": "30/09/2025 18:42:22"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.237",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-09-30T18:52:23.847933-03:00",
+    "data_hora": "30/09/2025 18:52:23"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.237",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-09-30T19:04:42.412747-03:00",
+    "data_hora": "30/09/2025 19:04:42"
   },
   {
     "usuario": "ALEXANDRE PEREIRA TOLENTINO (LOGOUT)",
+    "ip": "186.192.249.237",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-09-30T19:29:30.596983-03:00",
+    "data_hora": "30/09/2025 19:29:30"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.237",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-09-30T19:29:43.295652-03:00",
+    "data_hora": "30/09/2025 19:29:43"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "128.201.17.232",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-10-01T08:14:23.511735-03:00",
+    "data_hora": "01/10/2025 08:14:23"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "128.201.17.232",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-10-01T09:46:55.378979-03:00",
+    "data_hora": "01/10/2025 09:46:55"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "128.201.17.232",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-10-01T09:46:59.104374-03:00",
+    "data_hora": "01/10/2025 09:46:59"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "191.38.53.167",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-10-06T10:46:21.128811-03:00",
+    "data_hora": "06/10/2025 10:46:21"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
     "ip": "127.0.0.1",
     "user_agent": "Streamlit App",
-    "timestamp": "2025-10-06T11:00:10.322611-03:00",
-    "data_hora": "06/10/2025 11:00:10"
+    "timestamp": "2025-10-07T09:03:29.270754-03:00",
+    "data_hora": "07/10/2025 09:03:29"
   },
   {
     "usuario": "ALEXANDRE PEREIRA TOLENTINO",
     "ip": "186.192.254.84",
     "user_agent": "Streamlit App",
-    "timestamp": "2025-10-19T11:20:04.529626-03:00",
-    "data_hora": "19/10/2025 11:20:04"
-  },
-  {
-    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
-    "ip": "131.72.217.242",
-    "user_agent": "Streamlit App",
-    "timestamp": "2025-11-28T10:53:13.728350-03:00",
-    "data_hora": "28/11/2025 10:53:13"
+    "timestamp": "2025-10-19T11:20:39.148142-03:00",
+    "data_hora": "19/10/2025 11:20:39"
   },
   {
     "usuario": "ALEXANDRE PEREIRA TOLENTINO",
     "ip": "128.201.17.232",
     "user_agent": "Streamlit App",
-    "timestamp": "2025-11-28T11:12:12.563141-03:00",
-    "data_hora": "28/11/2025 11:12:12"
+    "timestamp": "2025-11-28T10:09:59.810706-03:00",
+    "data_hora": "28/11/2025 10:09:59"
   },
   {
     "usuario": "ALEXANDRE PEREIRA TOLENTINO",
     "ip": "128.201.17.232",
     "user_agent": "Streamlit App",
-    "timestamp": "2025-11-28T11:21:21.951074-03:00",
-    "data_hora": "28/11/2025 11:21:21"
-  },
-  {
-    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
-    "ip": "131.72.217.242",
-    "user_agent": "Streamlit App",
-    "timestamp": "2025-11-28T11:25:55.964992-03:00",
-    "data_hora": "28/11/2025 11:25:55"
+    "timestamp": "2025-11-28T10:15:27.806604-03:00",
+    "data_hora": "28/11/2025 10:15:27"
   },
   {
     "usuario": "ALEXANDRE PEREIRA TOLENTINO",
     "ip": "128.201.17.232",
     "user_agent": "Streamlit App",
-    "timestamp": "2025-11-28T11:31:31.745722-03:00",
-    "data_hora": "28/11/2025 11:31:31"
+    "timestamp": "2025-11-28T10:23:50.436985-03:00",
+    "data_hora": "28/11/2025 10:23:50"
   },
   {
     "usuario": "ALEXANDRE PEREIRA TOLENTINO",
-    "ip": "179.124.132.218",
+    "ip": "127.0.0.1",
     "user_agent": "Streamlit App",
-    "timestamp": "2026-01-21T15:06:54.042486-03:00",
-    "data_hora": "21/01/2026 15:06:54"
-  },
-  {
-    "usuario": "ALEXANDRE PEREIRA TOLENTINO (LOGOUT)",
-    "ip": "179.124.132.218",
-    "user_agent": "Streamlit App",
-    "timestamp": "2026-01-21T15:07:05.074820-03:00",
-    "data_hora": "21/01/2026 15:07:05"
+    "timestamp": "2025-11-28T10:28:05.091230-03:00",
+    "data_hora": "28/11/2025 10:28:05"
   },
   {
     "usuario": "ALEXANDRE PEREIRA TOLENTINO",
-    "ip": "179.124.132.218",
+    "ip": "127.0.0.1",
     "user_agent": "Streamlit App",
-    "timestamp": "2026-01-21T15:09:15.289261-03:00",
-    "data_hora": "21/01/2026 15:09:15"
+    "timestamp": "2025-11-28T10:31:31.531488-03:00",
+    "data_hora": "28/11/2025 10:31:31"
   },
   {
-    "usuario": "ALEXANDRE PEREIRA TOLENTINO (LOGOUT)",
-    "ip": "179.124.132.218",
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "128.201.17.232",
     "user_agent": "Streamlit App",
-    "timestamp": "2026-01-21T15:09:22.710298-03:00",
-    "data_hora": "21/01/2026 15:09:22"
+    "timestamp": "2025-11-28T10:45:45.322936-03:00",
+    "data_hora": "28/11/2025 10:45:45"
   },
   {
-    "usuario": "CENTRO DE ENSINO MEDIO ARY RIBEIRO VALADAO FILHO",
-    "ip": "179.124.132.218",
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.137",
     "user_agent": "Streamlit App",
-    "timestamp": "2026-01-21T15:09:33.662252-03:00",
-    "data_hora": "21/01/2026 15:09:33"
+    "timestamp": "2025-12-03T20:23:57.561463-03:00",
+    "data_hora": "03/12/2025 20:23:57"
   },
   {
-    "usuario": "CENTRO DE ENSINO MEDIO ARY RIBEIRO VALADAO FILHO (LOGOUT)",
-    "ip": "179.124.132.218",
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.137",
     "user_agent": "Streamlit App",
-    "timestamp": "2026-01-21T15:09:42.166944-03:00",
-    "data_hora": "21/01/2026 15:09:42"
+    "timestamp": "2025-12-03T20:24:58.695265-03:00",
+    "data_hora": "03/12/2025 20:24:58"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.137",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-12-03T20:34:18.518852-03:00",
+    "data_hora": "03/12/2025 20:34:18"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.137",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-12-03T20:36:39.362132-03:00",
+    "data_hora": "03/12/2025 20:36:39"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.137",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-12-03T20:44:07.971313-03:00",
+    "data_hora": "03/12/2025 20:44:07"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.137",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-12-03T20:49:48.717819-03:00",
+    "data_hora": "03/12/2025 20:49:48"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.137",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-12-03T21:06:14.033104-03:00",
+    "data_hora": "03/12/2025 21:06:14"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.137",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-12-03T21:14:26.950254-03:00",
+    "data_hora": "03/12/2025 21:14:26"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "127.0.0.1",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-12-08T23:07:03.589329-03:00",
+    "data_hora": "08/12/2025 23:07:03"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "186.192.249.137",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-12-08T23:11:15.814625-03:00",
+    "data_hora": "08/12/2025 23:11:15"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "127.0.0.1",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-12-08T23:15:46.327463-03:00",
+    "data_hora": "08/12/2025 23:15:46"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "127.0.0.1",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-12-08T23:19:44.103559-03:00",
+    "data_hora": "08/12/2025 23:19:44"
+  },
+  {
+    "usuario": "ALEXANDRE PEREIRA TOLENTINO",
+    "ip": "127.0.0.1",
+    "user_agent": "Streamlit App",
+    "timestamp": "2025-12-09T17:58:50.337410-03:00",
+    "data_hora": "09/12/2025 17:58:50"
   }
 ]
