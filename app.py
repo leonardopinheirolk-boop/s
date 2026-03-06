@@ -2135,26 +2135,17 @@ with col_nav4:
         st.session_state.usuario = None
         st.rerun()
 
-# Botão Versão 3 bimestres centralizado abaixo dos outros botões
-st.markdown("""
-<style>
-.stButton > button[kind="primary"] {
-    background-color: #28a745 !important;
-    border-color: #28a745 !important;
-    color: white !important;
-}
-.stButton > button[kind="primary"]:hover {
-    background-color: #218838 !important;
-    border-color: #1e7e34 !important;
-}
-</style>
-""", unsafe_allow_html=True)
-
-col_center1, col_center2, col_center3 = st.columns([1, 1, 1])
-with col_center2:
-    st.link_button("📊 Versão 3 bimestres", "https://painel-sge-terceiro-bimestre-bwu2rnpej5yhdzelxanyrf.streamlit.app", use_container_width=True, type="primary")
-
+# Filtro rápido de bimestre na tela principal
 st.markdown("---")
+
+col_bim1, col_bim2, col_bim3 = st.columns([1, 1.4, 1])
+with col_bim2:
+    filtro_bimestre_topo = st.selectbox(
+        "📚 Selecione o bimestre para análise:",
+        ["Todos", "1º Bimestre", "2º Bimestre", "3º Bimestre", "4º Bimestre"],
+        index=0,
+        help="Escolha um bimestre específico ou mantenha 'Todos' para visualizar todos os registros disponíveis."
+    )
 
 col_upl, col_info = st.columns([1, 2])
 with col_upl:
@@ -2213,44 +2204,41 @@ try:
         st.stop()
     else:
         # Continuar com interface padrão de notas/frequência
-        # Seletor de tipo de análise
-        st.markdown("---")
-        col_sel1, col_sel2 = st.columns([1, 2])
-        with col_sel1:
-            tipo_analise = st.radio(
-                "Tipo de Análise:",
-                ["1º e 2º Bimestres", "Apenas 1º Bimestre"],
-                help="Escolha se deseja analisar os dois primeiros bimestres ou apenas o primeiro bimestre",
-                horizontal=True
-            )
-        with col_sel2:
-            if tipo_analise == "Apenas 1º Bimestre":
-                st.info("📊 Análise focada apenas no primeiro bimestre. Os dados serão filtrados automaticamente.")
-            else:
-                st.info("📊 Análise dos dois primeiros bimestres (padrão).")
-        
-        # Filtrar dados se necessário
-        if tipo_analise == "Apenas 1º Bimestre":
-            # Filtrar apenas primeiro bimestre
-            def is_bimestre_1(periodo):
-                """Verifica se o período é primeiro bimestre"""
-                if not isinstance(periodo, str):
-                    return False
-                p = periodo.lower()
-                return ("primeiro" in p or "1º" in p or "1o" in p)
-            
+        # Aplicar filtro de bimestre selecionado no topo
+        filtro_bimestre_map = {
+            "Todos": None,
+            "1º Bimestre": 1,
+            "2º Bimestre": 2,
+            "3º Bimestre": 3,
+            "4º Bimestre": 4,
+        }
+
+        bimestre_selecionado = filtro_bimestre_map.get(filtro_bimestre_topo)
+
+        if bimestre_selecionado is not None:
             if "Periodo" in df.columns:
-                df = df[df["Periodo"].apply(is_bimestre_1)].copy()
-            
-            # Atualizar subtítulo do header
-            st.markdown("""
-            <script>
-                document.getElementById('subtitulo-analise').textContent = 'Análise do 1º Bimestre';
-            </script>
-            """, unsafe_allow_html=True)
-        
-        # Armazenar tipo de análise no dataframe para uso posterior
-        df.attrs['tipo_analise'] = tipo_analise
+                df = df[df["Periodo"].apply(lambda x: mapear_bimestre(x) == bimestre_selecionado)].copy()
+            elif "Bimestre" in df.columns:
+                rotulo_bimestre = f"{bimestre_selecionado}º Bimestre"
+                df = df[df["Bimestre"] == rotulo_bimestre].copy()
+
+            st.info(f"📊 Exibindo apenas os dados do {bimestre_selecionado}º bimestre.")
+            subtitulo_atual = f"Análise do {bimestre_selecionado}º Bimestre"
+        else:
+            st.info("📊 Exibindo todos os bimestres disponíveis na planilha.")
+            subtitulo_atual = "Análise de todos os bimestres disponíveis"
+
+        st.markdown(f"""
+        <script>
+            const subtitulo = document.getElementById('subtitulo-analise');
+            if (subtitulo) {{
+                subtitulo.textContent = '{subtitulo_atual}';
+            }}
+        </script>
+        """, unsafe_allow_html=True)
+
+        # Armazenar filtro aplicado no dataframe para uso posterior
+        df.attrs['tipo_analise'] = filtro_bimestre_topo
         
 except FileNotFoundError:
     st.error("Não encontrei `dados.xlsx` na pasta e nenhum arquivo foi enviado no uploader.")
