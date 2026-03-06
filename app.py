@@ -10,6 +10,7 @@ import hashlib
 import re
 from datetime import datetime
 import os
+import json
 
 
 # -----------------------------
@@ -194,22 +195,58 @@ def alterar_senha(identificador, senha_atual, nova_senha):
     except Exception as e:
         return False, f"Erro ao alterar senha: {str(e)}"
 
+
+
+def aplicar_tema_visual():
+    """Aplica um tema visual moderno ao app."""
+    st.markdown("""
+    <style>
+    :root {
+        --brand-900: #0f172a;
+        --brand-600: #0f766e;
+        --brand-500: #14b8a6;
+        --accent: #38bdf8;
+        --surface: rgba(255,255,255,0.72);
+        --surface-strong: rgba(255,255,255,0.88);
+        --border-soft: rgba(148, 163, 184, 0.28);
+        --text-main: #0f172a;
+        --text-soft: #475569;
+        --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.10);
+    }
+    .stApp {
+        background: radial-gradient(circle at top left, rgba(45, 212, 191, 0.18), transparent 26%), radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), transparent 22%), linear-gradient(180deg, #f8fafc 0%, #eef6ff 48%, #f8fafc 100%);
+        color: var(--text-main);
+    }
+    [data-testid="stHeader"] { background: rgba(255,255,255,0.45); backdrop-filter: blur(10px); }
+    [data-testid="stSidebar"] { background: linear-gradient(180deg, #0f172a 0%, #14213d 100%); border-right: 1px solid rgba(255,255,255,0.08); }
+    [data-testid="stSidebar"] * { color: #e2e8f0 !important; }
+    .block-container { padding-top: 1.4rem; padding-bottom: 2rem; max-width: 1350px; }
+    h1, h2, h3 { letter-spacing: -0.02em; }
+    div[data-testid="stMetric"] { background: linear-gradient(180deg, var(--surface-strong) 0%, rgba(255,255,255,0.68) 100%); border: 1px solid var(--border-soft); border-radius: 20px; padding: 0.9rem 1rem; box-shadow: var(--shadow-soft); }
+    div[data-testid="stMetricLabel"] p { font-weight: 600; color: var(--text-soft); }
+    .stButton > button, .stDownloadButton > button, .stFormSubmitButton > button { border-radius: 14px; border: 1px solid rgba(15,118,110,0.12); padding: 0.72rem 1.1rem; font-weight: 700; transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(20,184,166,0.12); }
+    .stButton > button:hover, .stDownloadButton > button:hover, .stFormSubmitButton > button:hover { transform: translateY(-1px); box-shadow: 0 14px 28px rgba(20,184,166,0.18); border-color: rgba(20,184,166,0.35); }
+    .stTextInput > div > div, .stSelectbox > div > div, .stMultiSelect > div > div { border-radius: 14px !important; }
+    .stDataFrame, .stPlotlyChart { background: rgba(255,255,255,0.82); border: 1px solid var(--border-soft); border-radius: 18px; padding: 0.35rem; box-shadow: var(--shadow-soft); }
+    .stAlert { border-radius: 16px; border: 1px solid rgba(148, 163, 184, 0.18); }
+    .painel-shell { background: linear-gradient(145deg, rgba(255,255,255,0.82) 0%, rgba(255,255,255,0.62) 100%); border: 1px solid var(--border-soft); border-radius: 28px; box-shadow: var(--shadow-soft); overflow: hidden; margin-bottom: 1.2rem; }
+    .hero-banner { padding: 2.4rem; background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 30%), linear-gradient(135deg, #0f172a 0%, #134e4a 58%, #0f766e 100%); color: white; }
+    .hero-banner h1 { margin: 0; font-size: 2.3rem; font-weight: 800; }
+    .hero-banner p { margin: 0.7rem 0 0 0; color: rgba(255,255,255,0.82); font-size: 1.02rem; }
+    .soft-card { background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(248,250,252,0.85) 100%); border: 1px solid var(--border-soft); border-radius: 22px; padding: 1.25rem; box-shadow: var(--shadow-soft); }
+    .section-title { margin: 0 0 0.4rem 0; font-size: 1.1rem; font-weight: 800; color: var(--brand-900); }
+    .section-subtitle { color: var(--text-soft); margin: 0; }
+    </style>
+    """, unsafe_allow_html=True)
 def tela_instrucoes():
     """Exibe tela de instruções de uso do sistema"""
     
-    # Header moderno
     st.markdown("""
-    <div style="background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); 
-                color: white; padding: 2rem; border-radius: 15px; 
-                text-align: center; margin-bottom: 2rem; 
-                box-shadow: 0 8px 25px rgba(74, 144, 226, 0.15);">
-        <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700; 
-                   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
-            Guia Completo de Uso
-        </h1>
-        <p style="font-size: 1.2rem; margin: 0.5rem 0 0 0; opacity: 0.9;">
-            Como analisar os dados da sua escola de forma eficiente
-        </p>
+    <div class="painel-shell">
+        <div class="hero-banner">
+            <h1>Guia completo de uso</h1>
+            <p>Passo a passo para carregar a planilha, aplicar filtros e interpretar os indicadores do painel.</p>
+        </div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -365,73 +402,80 @@ def tela_instrucoes():
     st.markdown("<div style='text-align: center; padding: 2rem;'><strong style='color: #4a90e2; font-size: 1.1rem;'>© 2025 – desenvolvido por Wallys Pereirao</strong></div>", unsafe_allow_html=True)
 
 def tela_login():
-    """Exibe tela de login"""
-    # CSS para botão de instruções maior
+    """Exibe tela de login com visual renovado."""
     st.markdown("""
-    <style>
-    .stButton > button[kind="primary"] {
-        background-color: #1f77b4;
-        color: white;
-        border: none;
-        border-radius: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        font-size: 1.1rem;
-        font-weight: 600;
-        height: auto;
-        min-height: 3rem;
-    }
-    .stButton > button[kind="primary"]:hover {
-        background-color: #0d5a8a;
-        color: white;
-    }
-    </style>
+    <div class="painel-shell">
+        <div class="hero-banner">
+            <h1>Painel SGE</h1>
+            <p>Monitoramento escolar com visual mais moderno, foco em clareza e navegação mais agradável.</p>
+        </div>
+    </div>
     """, unsafe_allow_html=True)
-    
-    # Botão de instruções no canto superior
-    col_inst, col_main, col_empty = st.columns([1, 2, 1])
-    
-    with col_inst:
-        if st.button("Instruções", use_container_width=True, help="Como usar o sistema", type="primary", key="btn_instrucoes"):
+
+    topo1, topo2 = st.columns([1, 5])
+    with topo1:
+        if st.button("📘 Instruções", use_container_width=True, key="btn_instrucoes"):
             st.session_state.mostrar_instrucoes = True
             st.rerun()
-    
-    st.markdown("---")
-    
-    col1, col2, col3 = st.columns([1, 2, 1])
-    
+    with topo2:
+        st.markdown("<div class='soft-card'><p class='section-title'>Acesso ao sistema</p><p class='section-subtitle'>Use CPF ou INEP para entrar no painel.</p></div>", unsafe_allow_html=True)
+
+    st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
+    col1, col2 = st.columns([1.15, 0.85], gap="large")
+
+    with col1:
+        st.markdown("""
+        <div class="soft-card">
+            <p class="section-title">O que você encontra aqui</p>
+            <p class="section-subtitle">Análises de notas, alertas, frequência e relatórios de forma visual e organizada.</p>
+            <div style="display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0.8rem; margin-top: 1rem;">
+                <div style="padding: 1rem; border-radius: 16px; background: rgba(20,184,166,0.09); border: 1px solid rgba(20,184,166,0.14);">📊 Indicadores rápidos</div>
+                <div style="padding: 1rem; border-radius: 16px; background: rgba(56,189,248,0.09); border: 1px solid rgba(56,189,248,0.14);">🎯 Alertas pedagógicos</div>
+                <div style="padding: 1rem; border-radius: 16px; background: rgba(15,23,42,0.06); border: 1px solid rgba(15,23,42,0.1);">📁 Relatórios em Excel</div>
+                <div style="padding: 1rem; border-radius: 16px; background: rgba(14,165,233,0.08); border: 1px solid rgba(14,165,233,0.12);">🔎 Filtros por escola e turma</div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
     with col2:
-        st.markdown("### Acesso ao Painel SGE")
-        st.info("Aceita CPF (pessoas) ou INEP (escolas)")
-        
+        st.markdown("<div class='soft-card'>", unsafe_allow_html=True)
+        st.markdown("### Entrar no painel")
+        st.caption("Aceita CPF de pessoas ou INEP de escolas")
+
         with st.form("login_form"):
-            identificador = st.text_input("CPF ou INEP:", placeholder="Digite seu CPF ou INEP da escola", help="Digite apenas números")
-            senha = st.text_input("Senha:", type="password", placeholder="Digite sua senha")
-            
+            identificador = st.text_input("CPF ou INEP", placeholder="Digite somente os números", help="Você pode usar CPF pessoal ou INEP da escola")
+            senha = st.text_input("Senha", type="password", placeholder="Digite sua senha")
             col_btn1, col_btn2 = st.columns(2)
             with col_btn1:
                 login_btn = st.form_submit_button("Entrar", use_container_width=True)
             with col_btn2:
-                if st.form_submit_button("Limpar", use_container_width=True):
-                    st.rerun()
-        
+                limpar_btn = st.form_submit_button("Limpar", use_container_width=True)
+
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        if limpar_btn:
+            st.rerun()
+
         if login_btn:
             if not identificador or not senha:
-                st.error("Por favor, preencha todos os campos!")
+                st.error("Por favor, preencha todos os campos.")
             elif len(re.sub(r'[^0-9]', '', identificador)) < 8:
-                st.error("CPF/INEP inválido! Digite pelo menos 8 números.")
+                st.error("CPF/INEP inválido. Digite pelo menos 8 números.")
             else:
                 usuario = autenticar_usuario(identificador, senha)
                 if usuario:
                     st.session_state.logado = True
                     st.session_state.usuario = usuario
-                    st.success(f"Login realizado com sucesso!")
+                    st.success("Login realizado com sucesso!")
                     st.rerun()
                 else:
-                    st.error("CPF/INEP ou senha incorretos!")
-        
-        # Assinatura centralizada
-        st.markdown("---")
-        st.markdown("<div style='text-align: center;'><strong>© 2025 – desenvolvido por Wallys Pereira</strong></div>", unsafe_allow_html=True)
+                    st.error("CPF/INEP ou senha incorretos.")
+
+    st.markdown("""
+    <div style='text-align:center; padding: 1rem 0 0.25rem 0; color:#64748b;'>
+        © 2025 – desenvolvido por Wallys Pereira
+    </div>
+    """, unsafe_allow_html=True)
 
 def tela_sobre():
     """Exibe modal com informações sobre o sistema"""
@@ -736,7 +780,8 @@ def enviar_email_simulado(destinatario, assunto, corpo, anexo=None):
 # -----------------------------
 # Configuração inicial
 # -----------------------------
-st.set_page_config(page_title="Painel SGE – Notas e Alertas", layout="wide")
+st.set_page_config(page_title="Painel SGE – Notas e Alertas", layout="wide", initial_sidebar_state="expanded")
+aplicar_tema_visual()
 
 MEDIA_APROVACAO = 6.0
 MEDIA_FINAL_ALVO = 6.0   # média final desejada após 4 bimestres
