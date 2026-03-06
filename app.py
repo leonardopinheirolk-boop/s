@@ -474,7 +474,7 @@ def tela_sobre():
     
     st.markdown("""
     <div class="sobre-texto">
-    Diante dessa realidade, Alexandre Tolentino, reconhecendo a necessidade de uma ferramenta mais eficiente e ágil, desenvolveu este painel interativo. A solução permite que, com a simples inserção da planilha de dados do SGE, em questão de segundos sejam apresentados todos os indicadores da unidade escolar de forma organizada, visual e facilmente interpretável.
+    Diante dessa realidade,  Tolentino, reconhecendo a necessidade de uma ferramenta mais eficiente e ágil, desenvolveu este painel interativo. A solução permite que, com a simples inserção da planilha de dados do SGE, em questão de segundos sejam apresentados todos os indicadores da unidade escolar de forma organizada, visual e facilmente interpretável.
     </div>
     """, unsafe_allow_html=True)
     
@@ -498,7 +498,7 @@ def tela_sobre():
     
     st.markdown("""
     <div class="sobre-texto">
-    Desde sua implementação inicial até os dias atuais, o painel tem passado por constantes atualizações e melhorias, sempre baseadas nas necessidades reais identificadas pelos usuários. Alexandre Tolentino continua desenvolvendo e aprimorando o sistema conforme novas demandas surgem, garantindo que a ferramenta permaneça atual, útil e eficaz para o processo de gestão educacional.
+    Desde sua implementação inicial até os dias atuais, o painel tem passado por constantes atualizações e melhorias, sempre baseadas nas necessidades reais identificadas pelos usuários.  Tolentino continua desenvolvendo e aprimorando o sistema conforme novas demandas surgem, garantindo que a ferramenta permaneça atual, útil e eficaz para o processo de gestão educacional.
     </div>
     """, unsafe_allow_html=True)
     
@@ -2141,7 +2141,7 @@ try:
             """
             <div style="text-align: center; margin-top: 40px; padding: 20px;">
                 <p style="margin: 0;">
-                    Desenvolvido por <strong style="color: #059669;">Alexandre Tolentino</strong> • 
+                    Desenvolvido por <strong style="color: #059669;"> Tolentino</strong> • 
                     <em>Painel SGE - Conteúdo Aplicado</em>
                 </p>
             </div>
@@ -2158,7 +2158,7 @@ try:
             """
             <div style="text-align: center; margin-top: 40px; padding: 20px;">
                 <p style="margin: 0;">
-                    Desenvolvido por <strong style="color: #059669;">Alexandre Tolentino</strong> • 
+                    Desenvolvido por <strong style="color: #059669;"> Tolentino</strong> • 
                     <em>Painel SGE - Censo Escolar</em>
                 </p>
             </div>
@@ -2216,7 +2216,7 @@ except FileNotFoundError:
         """
         <div style="text-align: center; margin-top: 40px; padding: 20px;">
             <p style="margin: 0;">
-                Desenvolvido por <strong style="color: #1e40af;">Alexandre Tolentino</strong> • 
+                Desenvolvido por <strong style="color: #1e40af;"> Tolentino</strong> • 
                 <em>Painel SGE</em>
             </p>
         </div>
@@ -4114,7 +4114,7 @@ st.markdown(
     """
     <div style="text-align: center; margin-top: 40px; padding: 20px;">
         <p style="margin: 0;">
-            Desenvolvido por <strong style="color: #1e40af;">Alexandre Tolentino</strong> • 
+            Desenvolvido por <strong style="color: #1e40af;">Lucas Lopes</strong> • 
             <em>Painel SGE - Sistema de Gestão Escolar</em>
         </p>
     </div>
