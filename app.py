@@ -910,21 +910,12 @@ def processar_notas_frequencia(df):
         df = df.rename(columns={"Frequência Anual": "Frequencia Anual"})
     
     # Detectar se é planilha do tipo "AtaMapa" (tem coluna "Estudante" e "Composicao")
-    # Para este tipo de planilha, filtrar apenas primeiro e segundo bimestre
+    # Mantém todos os bimestres disponíveis na planilha.
     is_atamapa = "Estudante" in df.columns and "Composicao" in df.columns
-    
+
     if is_atamapa and "Periodo" in df.columns:
-        # Normalizar valores de período para comparação (já feito acima, mas garantir)
+        # Apenas normaliza os valores de período; não restringe os bimestres.
         df["Periodo"] = df["Periodo"].astype(str).str.strip()
-        # Filtrar apenas primeiro e segundo bimestre usando a mesma lógica de mapear_bimestre
-        def is_bimestre_1_ou_2(periodo):
-            """Verifica se o período é primeiro ou segundo bimestre"""
-            if not isinstance(periodo, str):
-                return False
-            p = periodo.lower()
-            return ("primeiro" in p or "1º" in p or "1o" in p) or ("segundo" in p or "2º" in p or "2o" in p)
-        
-        df = df[df["Periodo"].apply(is_bimestre_1_ou_2)].copy()
 
     # Converter Nota (vírgula -> ponto, texto -> float)
     if "Nota" in df.columns:
@@ -2068,7 +2059,7 @@ if st.session_state.mostrar_admin:
 # UI – Entrada de dados
 # -----------------------------
 # Header com boas-vindas personalizadas (será atualizado após seleção do tipo de análise)
-subtitulo_padrao = "Análise dos 1º e 2º Bimestres"
+subtitulo_padrao = "Análise integrada dos 1º, 2º, 3º e 4º bimestres"
 st.markdown(f"""
 <div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #1e40af, #3b82f6); border-radius: 15px; margin-bottom: 30px; box-shadow: 0 8px 25px rgba(30, 64, 175, 0.3);">
     <h1 style="color: white; margin: 0; font-size: 2.2em; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Superintendência Regional de Educação de Porto Nacional TO</h1>
@@ -2081,12 +2072,12 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# Barra de navegação com opções do usuário
+# Barra de navegação com opções públicas
 col_nav1, col_nav2, col_nav3, col_nav4 = st.columns([1, 1, 1, 1])
 
 with col_nav1:
-    if st.button("🔑 Alterar Senha", use_container_width=True, key="btn_alterar_senha"):
-        st.session_state.mostrar_alterar_senha = True
+    if st.button("📘 Instruções", use_container_width=True, key="btn_instrucoes_topo"):
+        st.session_state.mostrar_instrucoes = True
         st.rerun()
 
 with col_nav2:
@@ -2094,27 +2085,15 @@ with col_nav2:
         st.session_state.mostrar_sobre = True
 
 with col_nav3:
-    if MONITORING_AVAILABLE and st.button("🔐 Admin", use_container_width=True, key="btn_admin"):
-        st.session_state.mostrar_admin = True
-        st.rerun()
+    if MONITORING_AVAILABLE:
+        if st.button("🔐 Admin", use_container_width=True, key="btn_admin"):
+            st.session_state.mostrar_admin = True
+            st.rerun()
+    else:
+        st.markdown("<div style='text-align:center; padding:0.85rem 0; font-weight:600; color:#475569;'>Acesso livre</div>", unsafe_allow_html=True)
 
 with col_nav4:
-    if st.button("🚪 Sair", use_container_width=True, key="btn_sair"):
-        # Registrar logout se disponível
-        if MONITORING_AVAILABLE and st.session_state.usuario:
-            try:
-                client_info = get_client_info()
-                firebase_manager.log_access(
-                    usuario=f"{st.session_state.usuario['nome']} (LOGOUT)",
-                    ip=client_info['ip'],
-                    user_agent=client_info['user_agent']
-                )
-            except Exception as e:
-                print(f"Erro ao registrar logout: {e}")
-        
-        st.session_state.logado = False
-        st.session_state.usuario = None
-        st.rerun()
+    st.markdown("<div style='text-align:center; padding:0.85rem 0; font-weight:700; color:#1e3a8a;'>Acesso livre</div>", unsafe_allow_html=True)
 
 st.markdown("---")
 
@@ -2175,44 +2154,11 @@ try:
         st.stop()
     else:
         # Continuar com interface padrão de notas/frequência
-        # Seletor de tipo de análise
         st.markdown("---")
-        col_sel1, col_sel2 = st.columns([1, 2])
-        with col_sel1:
-            tipo_analise = st.radio(
-                "Tipo de Análise:",
-                ["1º e 2º Bimestres", "Apenas 1º Bimestre"],
-                help="Escolha se deseja analisar os dois primeiros bimestres ou apenas o primeiro bimestre",
-                horizontal=True
-            )
-        with col_sel2:
-            if tipo_analise == "Apenas 1º Bimestre":
-                st.info("📊 Análise focada apenas no primeiro bimestre. Os dados serão filtrados automaticamente.")
-            else:
-                st.info("📊 Análise dos dois primeiros bimestres (padrão).")
-        
-        # Filtrar dados se necessário
-        if tipo_analise == "Apenas 1º Bimestre":
-            # Filtrar apenas primeiro bimestre
-            def is_bimestre_1(periodo):
-                """Verifica se o período é primeiro bimestre"""
-                if not isinstance(periodo, str):
-                    return False
-                p = periodo.lower()
-                return ("primeiro" in p or "1º" in p or "1o" in p)
-            
-            if "Periodo" in df.columns:
-                df = df[df["Periodo"].apply(is_bimestre_1)].copy()
-            
-            # Atualizar subtítulo do header
-            st.markdown("""
-            <script>
-                document.getElementById('subtitulo-analise').textContent = 'Análise do 1º Bimestre';
-            </script>
-            """, unsafe_allow_html=True)
-        
+        st.info("📊 Painel configurado para trabalhar com os bimestres selecionados nos filtros laterais.")
+
         # Armazenar tipo de análise no dataframe para uso posterior
-        df.attrs['tipo_analise'] = tipo_analise
+        df.attrs['tipo_analise'] = "Bimestres Selecionados"
         
 except FileNotFoundError:
     st.error("Não encontrei `dados.xlsx` na pasta e nenhum arquivo foi enviado no uploader.")
@@ -2379,8 +2325,8 @@ with col_b2:
     if st.button("Limpar", key="btn_limpar_bim", help="Limpar seleção"):
         st.session_state.bimestres_selecionados = []
 
-if 'bimestres_selecionados' not in st.session_state:
-    st.session_state.bimestres_selecionados = []
+if 'bimestres_selecionados' not in st.session_state or not st.session_state.bimestres_selecionados:
+    st.session_state.bimestres_selecionados = bimestres.copy()
 
 bimestre_sel = st.sidebar.multiselect(
     "Selecione os bimestres:",
@@ -2601,7 +2547,7 @@ if "Frequencia Anual" in df_filt.columns or "Frequencia" in df_filt.columns:
 if hasattr(df, 'attrs') and 'tipo_analise' in df.attrs:
     tipo_analise = df.attrs['tipo_analise']
 else:
-    tipo_analise = '1º e 2º Bimestres'
+    tipo_analise = 'Bimestres Selecionados'
 
 # Usar função apropriada baseada no tipo de análise
 if tipo_analise == "Apenas 1º Bimestre":
@@ -3498,7 +3444,7 @@ if tipo_analise == "Apenas 1º Bimestre":
     with st.expander("📈 Geral - Notas Abaixo da Média por Disciplina (1º Bimestre)"):
         base_baixas = notas_baixas_b1.copy()
 else:
-    with st.expander("📈 Geral - Notas Abaixo da Média por Disciplina (1º + 2º Bimestre)"):
+    with st.expander("📈 Geral - Notas Abaixo da Média por Disciplina (Bimestres Selecionados)"):
         base_baixas = pd.concat([notas_baixas_b1, notas_baixas_b2], ignore_index=True)
     if len(base_baixas) > 0:
         # Contar notas por disciplina
@@ -3512,7 +3458,7 @@ else:
         contagem['Cor'] = ['#1e40af' if i % 2 == 0 else '#059669' for i in range(len(contagem))]
         
         fig = px.bar(contagem, x="Disciplina", y="Qtd Notas < 6", 
-                    title="Notas abaixo da média (1º Bimestre)" if tipo_analise == "Apenas 1º Bimestre" else "Notas abaixo da média (1º + 2º Bimestre)",
+                    title="Notas abaixo da média (1º Bimestre)" if tipo_analise == "Apenas 1º Bimestre" else "Notas abaixo da média (bimestres selecionados)",
                     color="Cor",
                     color_discrete_map={'#1e40af': '#1e40af', '#059669': '#059669'})
         
